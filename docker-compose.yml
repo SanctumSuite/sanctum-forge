@@ -1,0 +1,17 @@
+services:
+  sanctum-forge:
+    build: .
+    ports:
+      - "8200:8200"
+    environment:
+      - FORGE_LOG_LEVEL=${FORGE_LOG_LEVEL:-INFO}
+      - FORGE_OLLAMA_URL=${FORGE_OLLAMA_URL:-http://host.docker.internal:11434}
+      - FORGE_OCR_MODELS=${FORGE_OCR_MODELS:-deepseek-ocr:latest}
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1'
