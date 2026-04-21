@@ -1,0 +1,8 @@
+fastapi==0.118.0
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+pydantic==2.10.5
+pymupdf4llm==0.0.17
+mammoth==1.8.0
+html2text==2024.2.26
+markdown-it-py==3.0.0
