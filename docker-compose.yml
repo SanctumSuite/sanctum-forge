@@ -2,7 +2,9 @@ services:
   sanctum-forge:
     build: .
     ports:
-      - "8200:8200"
+      # Host port is overridable — if translachat's in-tree forge is running
+      # on 8200, set FORGE_HOST_PORT=8201 in .env to avoid the conflict.
+      - "${FORGE_HOST_PORT:-8200}:8200"
     environment:
       - FORGE_LOG_LEVEL=${FORGE_LOG_LEVEL:-INFO}
       - FORGE_OLLAMA_URL=${FORGE_OLLAMA_URL:-http://host.docker.internal:11434}

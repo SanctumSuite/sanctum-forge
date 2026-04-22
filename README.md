@@ -64,6 +64,16 @@ curl http://localhost:8200/health
 
 Forge has no database and no external dependencies — just a single container running the FastAPI service on port 8200.
 
+> **Port conflict note:** [translachat](https://github.com/lafintiger/translachat) currently ships an in-tree copy of Forge at `translachat/forge/` that also binds host port 8200. If you run both at the same time, override the standalone's host port before starting:
+>
+> ```bash
+> echo FORGE_HOST_PORT=8201 >> .env
+> docker compose up -d
+> curl http://localhost:8201/health
+> ```
+>
+> When translachat migrates to consume this published Forge (planned), the in-tree copy will be deleted and this caveat goes away.
+
 ---
 
 ## Consuming Forge from a Python app
